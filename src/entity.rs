@@ -1,17 +1,19 @@
 use std::fmt;
 
-pub type entity_stat = i32;
+extern crate term;
+
+pub type EntityStat = i32;
 
 #[derive(Debug)]
 pub struct Entity {
     name:          String,
-    level:        entity_stat,
-    strength:     entity_stat,
-    defense:      entity_stat,
-    intelligence: entity_stat,
-    mana:         entity_stat,
-    hitpoints:    entity_stat,
-    constitution: entity_stat,
+    level:        EntityStat,
+    strength:     EntityStat,
+    defense:      EntityStat,
+    intelligence: EntityStat,
+    mana:         EntityStat,
+    hitpoints:    EntityStat,
+    constitution: EntityStat,
 }
 
 impl Entity {
@@ -28,11 +30,11 @@ impl Entity {
         }
     }
 
-    pub fn attack(self) -> entity_stat {
+    pub fn attack(self) -> EntityStat {
         self.strength
     }
 
-    pub fn defend(self) -> entity_stat {
+    pub fn defend(self) -> EntityStat {
         self.defense
     }
 
@@ -40,7 +42,22 @@ impl Entity {
 
 impl fmt::Display for Entity {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "[{}: lvl {}]", self.name, self.level)
+        let mut t = term::stdout().unwrap();
+        write!(f, "[").unwrap();
+        t.fg(term::color::BLUE).unwrap();
+        write!(f, "{}", self.name).unwrap();
+        t.reset().unwrap();
+        write!(f, ":").unwrap();
+
+        t.fg(term::color::MAGENTA).unwrap();
+        write!(f, " lvl ").unwrap();
+        t.reset().unwrap();
+
+        t.fg(term::color::YELLOW).unwrap();
+        write!(f, "{}", self.level).unwrap();
+        t.reset().unwrap();
+
+        write!(f, "]")
     }
 }
 

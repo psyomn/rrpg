@@ -5,6 +5,7 @@ authors = ["psyomn <lethaljellybean@gmail.com>"]
 
 [dependencies]
 rand = "0.3"
+term = "0.2"
 
 [[bin]]
 name = "rrpg"

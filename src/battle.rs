@@ -3,6 +3,8 @@ use entity::{Entity};
 use std::io;
 use std::io::prelude::*;
 
+extern crate term;
+
 #[derive(Debug)]
 pub struct Battle {
     enemies: Vec<Entity>,
@@ -36,18 +38,27 @@ impl Battle {
 
             for line in stdin.lock().lines() {
                 let l = line.unwrap();
+                break;
             }
         }
     }
 
     pub fn show_heroes(&self) {
+        let mut t = term::stdout().unwrap();
         for e in self.heroes.iter() {
+            t.fg(term::color::GREEN).unwrap();
+            print!("* ");
+            t.reset().unwrap();
             println!("{}", e);
         }
     }
 
     pub fn show_enemies(&self) {
+        let mut t = term::stdout().unwrap();
         for e in self.enemies.iter() {
+            t.fg(term::color::RED).unwrap();
+            print!("* ");
+            t.reset().unwrap();
             println!("{}", e);
         }
     }
