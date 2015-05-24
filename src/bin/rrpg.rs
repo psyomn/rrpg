@@ -21,5 +21,8 @@ fn main() {
 
     battle.set_enemies(enemies);
     battle.set_heroes(heroes);
+
+    battle.fight();
+
     println!("{}", battle);
 }

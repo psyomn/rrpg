@@ -1,10 +1,13 @@
 use std::fmt;
 use entity::{Entity};
+use std::io;
+use std::io::prelude::*;
 
 #[derive(Debug)]
 pub struct Battle {
     enemies: Vec<Entity>,
     heroes: Vec<Entity>,
+    done: bool,
 }
 
 impl Battle {
@@ -12,6 +15,7 @@ impl Battle {
         Battle {
             enemies: vec!(),
             heroes: vec!(),
+            done: false,
         }
     }
 
@@ -24,7 +28,28 @@ impl Battle {
     }
 
     /// Step in battle
-    pub fn step(self) {
+    pub fn fight(&mut self) {
+        let stdin = io::stdin();
+        while !self.done {
+            self.show_heroes();
+            self.show_enemies();
+
+            for line in stdin.lock().lines() {
+                let l = line.unwrap();
+            }
+        }
+    }
+
+    pub fn show_heroes(&self) {
+        for e in self.heroes.iter() {
+            println!("{}", e);
+        }
+    }
+
+    pub fn show_enemies(&self) {
+        for e in self.enemies.iter() {
+            println!("{}", e);
+        }
     }
 }
 
