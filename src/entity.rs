@@ -6,7 +6,7 @@ pub type EntityStat = i32;
 
 #[derive(Debug)]
 pub struct Entity {
-    name:          String,
+    name:         String,
     level:        EntityStat,
     strength:     EntityStat,
     defense:      EntityStat,
@@ -30,12 +30,41 @@ impl Entity {
         }
     }
 
-    pub fn attack(self) -> EntityStat {
+    pub fn get_hitpoints(&self) -> EntityStat {
+        self.hitpoints
+    }
+
+    pub fn get_constitution(&self) -> EntityStat {
+        self.constitution
+    }
+
+    pub fn set_constitution(&mut self, c: EntityStat) {
+        self.constitution = c;
+    }
+
+    pub fn get_strength(&self) -> EntityStat {
         self.strength
     }
 
-    pub fn defend(self) -> EntityStat {
+    pub fn set_strength(&mut self, s: EntityStat) {
+        self.strength = s;
+    }
+
+    pub fn attack(&self) -> EntityStat {
+        self.strength
+    }
+
+    pub fn defend(&self) -> EntityStat {
         self.defense
+    }
+
+    /// Safe way to decrement hitpoints
+    pub fn receive_damage(&mut self, e: EntityStat) {
+        if self.hitpoints > e {
+            self.hitpoints -= e;
+            return;
+        }
+        self.hitpoints = 0;
     }
 
 }
@@ -55,6 +84,10 @@ impl fmt::Display for Entity {
 
         t.fg(term::color::YELLOW).unwrap();
         write!(f, "{}", self.level).unwrap();
+        t.reset().unwrap();
+
+        t.fg(term::color::GREEN).unwrap();
+        write!(f, " {}/{}", self.hitpoints, self.constitution);
         t.reset().unwrap();
 
         write!(f, "]")
