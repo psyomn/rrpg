@@ -1,5 +1,8 @@
 extern crate rrpg;
 
+use std::error::Error;
+use std::default::Default;
+
 use rrpg::entity::{Entity};
 use rrpg::battle::{Battle};
 use rrpg::levelers::fighter_leveler;
@@ -26,7 +29,6 @@ fn main() {
 
     battle.set_enemies(enemies);
     battle.set_heroes(heroes);
-
     battle.fight();
 
     println!("{}", battle);

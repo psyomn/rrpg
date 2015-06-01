@@ -6,6 +6,10 @@ authors = ["psyomn <lethaljellybean@gmail.com>"]
 [dependencies]
 rand = "0.3"
 term = "0.2"
+rustbox = "*"
 
 [[bin]]
 name = "rrpg"
+
+[[bin]]
+name = "rrpg-rustbox"
