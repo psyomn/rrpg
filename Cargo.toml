@@ -7,6 +7,7 @@ authors = ["psyomn <lethaljellybean@gmail.com>"]
 rand = "0.3"
 term = "0.2"
 rustbox = "*"
+cpal = "*"
 
 [[bin]]
 name = "rrpg"
