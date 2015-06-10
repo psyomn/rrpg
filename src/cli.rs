@@ -54,10 +54,10 @@ fn welcome_screen(r: &RustBox) -> GameState {
 
     loop {
         clear_screen(&r);
-        r.print(1, 1, rustbox::RB_BOLD, Color::Yellow, Color::Black, s.as_ref());
-        r.print(3, 3, rustbox::RB_BOLD, Color::White, Color::Black, "New Game");
-        r.print(3, 4, rustbox::RB_BOLD, Color::White, Color::Black, "Quit");
-        r.print(1, 3 + c, rustbox::RB_BOLD, Color::Red, Color::Black, "*");
+        r.print(3, 3, rustbox::RB_BOLD, Color::Yellow, Color::Black, s.as_ref());
+        r.print(7, 5, rustbox::RB_BOLD, Color::White, Color::Black, "New Game");
+        r.print(7, 6, rustbox::RB_BOLD, Color::White, Color::Black, "Quit");
+        r.print(5, 5 + c, rustbox::RB_BOLD, Color::Red, Color::Black, "*");
         make_borders(&r, Color::Blue);
         r.present();
 
@@ -97,11 +97,11 @@ fn _clear_screen(r: &RustBox, w: usize, h: usize) {
 fn make_borders(r: &RustBox, c: Color) -> () {
     for x in 0..SCREEN_WIDTH {
         r.print(x, 0, rustbox::RB_NORMAL, c, c, " ");
-        r.print(x, SCREEN_HEIGHT, rustbox::RB_NORMAL, c, c, " ");
+        r.print(x, SCREEN_HEIGHT - 1, rustbox::RB_NORMAL, c, c, " ");
     }
-    for y in 0..SCREEN_HEIGHT + 1 {
+    for y in 0..SCREEN_HEIGHT {
         r.print(0, y, rustbox::RB_NORMAL, c, c, " ");
-        r.print(SCREEN_WIDTH, y, rustbox::RB_NORMAL, c, c, " ");
+        r.print(SCREEN_WIDTH - 1, y, rustbox::RB_NORMAL, c, c, " ");
     }
 }
 
