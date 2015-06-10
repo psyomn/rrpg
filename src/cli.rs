@@ -28,6 +28,7 @@ pub fn start() {
 }
 
 fn start_game(r: &RustBox) {
+    cli_storyline::make_pages(&r, "It was a gloomy night and what a bad one at that".to_string());
     loop {
         clear_screen(&r);
         r.print(1, 1, rustbox::RB_BOLD, Color::White, Color::Black, "HELLO WORLD");

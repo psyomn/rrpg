@@ -8,19 +8,19 @@ use std::default::Default;
 use cli;
 use cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
 
+const X_OFFSET: usize = 1;
+const Y_OFFSET: usize = 1;
+
 /// Given some text, render most of it using the max dimensions of the drawing space.
 /// If there's too much text, then wait for user input, to go to the next page, until everything is
 /// read.
-fn make_pages(r: &RustBox, page_text: String) -> () {
+pub fn make_pages(r: &RustBox, page_text: String) -> () {
     let mut x_offset : usize = 1;
     let mut y_offset : usize = 1;
     let mut curr_line : String = "".to_string();
     let mut lines : Vec<String> = vec!();
     let words = page_text.split(" ").collect::<Vec<&str>>();
     let mut ix = 0;
-    let mut ix = 0;
-
-    cli::clear_screen(&r);
 
     /* This will build the lines as they need to be displayed */
     lines.push("".to_string());
@@ -36,4 +36,23 @@ fn make_pages(r: &RustBox, page_text: String) -> () {
             curr_line = w.to_string();
         }
     }
+
+    draw_pages(&r, lines);
 }
+
+fn draw_pages(r: &RustBox, curr_page: Vec<String>) {
+    let mut count = Y_OFFSET;
+    cli::clear_screen(&r);
+
+    for line in curr_page {
+        if count >= SCREEN_HEIGHT { break; }
+        r.print(X_OFFSET, count, rustbox::RB_BOLD, Color::White, Color::Black, line.as_ref());
+        count += 1;
+    }
+    r.present();
+
+    match r.poll_event(false) {
+        _ => return,
+    }
+}
+
