@@ -4,3 +4,6 @@ pub mod levelers;
 pub mod cli;
 pub mod cli_constants;
 pub mod cli_storyline;
+pub mod map;
+pub mod tile;
+pub mod session;

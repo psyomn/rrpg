@@ -4,7 +4,7 @@ extern crate term;
 
 pub type EntityStat = i32;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Entity {
     name:         String,
     level:        EntityStat,
