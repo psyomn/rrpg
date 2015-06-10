@@ -46,17 +46,27 @@ pub fn make_pages(r: &RustBox, page_text: String) -> () {
 
 fn draw_pages(r: &RustBox, curr_page: Vec<String>) {
     let mut count = Y_OFFSET;
-    cli::clear_screen(&r);
+    let mut it = curr_page.iter();
+    let mut done : bool = false;
 
-    for line in curr_page {
-        if count >= SCREEN_HEIGHT { break; }
-        r.print(X_OFFSET, count, rustbox::RB_BOLD, Color::White, Color::Black, line.as_ref());
-        count += 1;
-    }
-    r.present();
+    while (!done) {
+        cli::clear_screen(&r);
+        loop {
+            if count + Y_OFFSET >= SCREEN_HEIGHT { break; }
+            match it.next() {
+                Some(line) =>
+                    r.print(X_OFFSET, count, rustbox::RB_BOLD, Color::White, Color::Black,
+                            line.as_ref()),
+                None => { done = true; break },
+            }
+            count += 1;
+        }
+        count = Y_OFFSET;
+        r.present();
 
-    match r.poll_event(false) {
-        _ => return,
+        match r.poll_event(false) {
+            _ => continue,
+        }
     }
 }
 
