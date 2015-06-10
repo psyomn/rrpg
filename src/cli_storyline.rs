@@ -23,18 +23,22 @@ pub fn make_pages(r: &RustBox, page_text: String) -> () {
     let mut ix = 0;
 
     /* This will build the lines as they need to be displayed */
-    lines.push("".to_string());
     for w in words {
         ix = lines.len();
 
-        if x_offset + w.len() + curr_line.len() < SCREEN_WIDTH {
-            curr_line = curr_line + &w.to_string();
+        if x_offset + w.len() + curr_line.len() + 1 < SCREEN_WIDTH {
+            /* +1 for space between words */
+            curr_line = curr_line + &w.to_string() + " ";
         }
         else {
             lines.push(curr_line.clone());
             curr_line.clear();
             curr_line = w.to_string();
         }
+    }
+
+    if curr_line != "" {
+        lines.push(curr_line.clone());
     }
 
     draw_pages(&r, lines);
