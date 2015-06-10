@@ -32,7 +32,6 @@ impl Battle {
     /// Step in battle
     pub fn fight(&mut self) {
         let stdin = io::stdin();
-        let attack_str = "attack".to_string();
         let mut choice = "default".to_string();
         while !self.done {
             self.show_heroes();
@@ -72,7 +71,7 @@ impl Battle {
 
     fn heroes_attack(&mut self) {
         let mut attacks_cycle = self.heroes.iter().map(|h| h.attack()).collect::<Vec<EntityStat>>();
-        let mut en_iter = self.enemies.iter_mut();
+        let en_iter = self.enemies.iter_mut();
 
         for e in en_iter {
             if attacks_cycle.len() == 0 { break; }
@@ -87,13 +86,11 @@ impl Battle {
         }
     }
 
-    fn heroes_defend(&self) {
-        let h_defend = self.enemies.iter();
+    fn heroes_defend(&self) -> () {
     }
 
     fn get_dead_enemy_indices(&self) -> Vec<usize> {
-        let mut en_it =
-            self.enemies.iter().enumerate();
+        let en_it = self.enemies.iter().enumerate();
         let mut indices = vec!();
 
         for (ix, enemy) in en_it {

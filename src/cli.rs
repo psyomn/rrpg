@@ -3,11 +3,7 @@ extern crate rustbox;
 use self::rustbox::{Color, RustBox};
 use self::rustbox::Key;
 
-use std::error::Error;
 use std::default::Default;
-use entity::{Entity};
-use battle::{Battle};
-use levelers::fighter_leveler;
 use cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
 use cli_storyline;
 
@@ -62,6 +58,7 @@ fn welcome_screen(r: &RustBox) -> GameState {
         r.print(3, 3, rustbox::RB_BOLD, Color::White, Color::Black, "New Game");
         r.print(3, 4, rustbox::RB_BOLD, Color::White, Color::Black, "Quit");
         r.print(1, 3 + c, rustbox::RB_BOLD, Color::Red, Color::Black, "*");
+        make_borders(&r, Color::Blue);
         r.present();
 
         match r.poll_event(false) {
@@ -74,7 +71,7 @@ fn welcome_screen(r: &RustBox) -> GameState {
                 }
             },
 
-            Err(e) => { },
+            Err(e) => panic!("{}", e),
             _ => {},
         }
     }
@@ -93,6 +90,18 @@ fn _clear_screen(r: &RustBox, w: usize, h: usize) {
         for j in 0..h {
             r.print(i, j, rustbox::RB_NORMAL, Color::Black, Color::Black, " ");
         }
+    }
+}
+
+
+fn make_borders(r: &RustBox, c: Color) -> () {
+    for x in 0..SCREEN_WIDTH {
+        r.print(x, 0, rustbox::RB_NORMAL, c, c, " ");
+        r.print(x, SCREEN_HEIGHT, rustbox::RB_NORMAL, c, c, " ");
+    }
+    for y in 0..SCREEN_HEIGHT + 1 {
+        r.print(0, y, rustbox::RB_NORMAL, c, c, " ");
+        r.print(SCREEN_WIDTH, y, rustbox::RB_NORMAL, c, c, " ");
     }
 }
 

@@ -1,8 +1,5 @@
 extern crate rrpg;
 
-use std::error::Error;
-use std::default::Default;
-
 use rrpg::entity::{Entity};
 use rrpg::battle::{Battle};
 use rrpg::levelers::fighter_leveler;
