@@ -11,6 +11,3 @@ cpal = "*"
 
 [[bin]]
 name = "rrpg"
-
-[[bin]]
-name = "rrpg-rustbox"
