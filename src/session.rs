@@ -8,4 +8,8 @@ impl Session {
     fn new() -> Session {
         Session { party: vec!() }
     }
+
+    fn add_hero(&mut self, e: &Entity) {
+        self.party.push(e.clone());
+    }
 }

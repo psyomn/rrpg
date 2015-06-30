@@ -7,3 +7,4 @@ pub mod cli_storyline;
 pub mod map;
 pub mod tile;
 pub mod session;
+pub mod storyline_constants;

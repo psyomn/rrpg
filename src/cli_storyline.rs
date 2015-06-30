@@ -25,7 +25,7 @@ pub fn make_pages(r: &RustBox, page_text: String) -> () {
         else {
             lines.push(curr_line.clone());
             curr_line.clear();
-            curr_line = w.to_string();
+            curr_line = w.to_string() + " ";
         }
     }
 

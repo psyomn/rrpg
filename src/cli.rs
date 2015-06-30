@@ -5,6 +5,7 @@ use self::rustbox::Key;
 
 use std::default::Default;
 use cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
+use storyline_constants::*;
 use cli_storyline;
 
 enum GameState { GameStart, GameExit }
@@ -24,13 +25,7 @@ pub fn start() {
 }
 
 fn start_game(r: &RustBox) {
-    cli_storyline::make_pages(&r,
-        "It was a gloomy night and what a bad one at that\
-         There was lighning, and thunder, and some odd looking trees \
-         and at some points, you are not sure if you are hearing the wind howl\
-         or there are some odd monsters out for you in the middle of the night.\
-         Nevertheless, ready with your gear, you march on.
-         ".to_string());
+    cli_storyline::make_pages(&r, INTRODUCTION.to_string());
 
     loop {
         clear_screen(&r);
