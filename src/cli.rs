@@ -25,16 +25,29 @@ pub fn start() {
 }
 
 fn start_game(r: &RustBox) {
+    let mut t : &str;
+    let pl = "pressed left ";
+    let pr = "pressed right";
+    let pu = "pressed up   ";
+    let pd = "pressed down ";
+    let def = "default";
+
+    t = &def;
+
     cli_storyline::make_pages(&r, INTRODUCTION.to_string());
 
     loop {
         clear_screen(&r);
-        r.print(1, 1, rustbox::RB_BOLD, Color::White, Color::Black, "HELLO WORLD");
+        r.print(1, 1, rustbox::RB_BOLD, Color::White, Color::Black, t);
         r.present();
         match r.poll_event(false) {
             Ok(rustbox::Event::KeyEvent(key)) => {
                 match key {
                     Some(Key::Enter) => {},
+                    Some(Key::Right) => t = &pr,
+                    Some(Key::Left) => t = &pl,
+                    Some(Key::Down) => t = &pd,
+                    Some(Key::Up) => t = &pu,
                     _ => break,
                 }
             },
