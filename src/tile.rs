@@ -5,7 +5,7 @@ pub struct Tile {
 }
 
 impl Tile {
-    fn new() -> Tile {
+    pub fn new() -> Tile {
         Tile { entities: vec!() }
     }
 }

@@ -7,6 +7,8 @@ use std::default::Default;
 use cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
 use storyline_constants::*;
 use cli_storyline;
+use map::Map;
+use cli::map_drawer;
 
 enum GameState { GameStart, GameExit }
 
@@ -26,6 +28,7 @@ pub fn start() {
 
 fn start_game(r: &RustBox) {
     let mut t : &str;
+    let mut map = Map::new();
     let pl = "pressed left ";
     let pr = "pressed right";
     let pu = "pressed up   ";
@@ -39,6 +42,7 @@ fn start_game(r: &RustBox) {
     loop {
         clear_screen(&r);
         r.print(1, 1, rustbox::RB_BOLD, Color::White, Color::Black, t);
+        make_borders(&r, Color::Blue);
         r.present();
         match r.poll_event(false) {
             Ok(rustbox::Event::KeyEvent(key)) => {
