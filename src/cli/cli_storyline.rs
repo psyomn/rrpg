@@ -1,8 +1,8 @@
 extern crate rustbox;
 use self::rustbox::{Color, RustBox};
 
-use cli;
-use cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
+use cli::cli;
+use cli::cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
 
 const X_OFFSET: usize = 1;
 const Y_OFFSET: usize = 1;

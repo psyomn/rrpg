@@ -4,10 +4,11 @@ use self::rustbox::{Color, RustBox};
 use self::rustbox::Key;
 
 use std::default::Default;
-use cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
 use storyline_constants::*;
-use cli_storyline;
 use map::Map;
+
+use cli::cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
+use cli::cli_storyline;
 use cli::map_drawer;
 
 enum GameState { GameStart, GameExit }
