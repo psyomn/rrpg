@@ -13,9 +13,7 @@ impl Map {
             x: 10,
             y: 10,
         };
-
-        m.make_default_tiles();
-
+        m.tiles = m.make_default_tiles();
         m
     }
 
@@ -28,5 +26,11 @@ impl Map {
         }
         v
     }
+
+    pub fn x(&self) -> u32 { self.x }
+
+    pub fn y(&self) -> u32 { self.y }
+
+    pub fn tiles(&self) -> &Vec<Tile> { &self.tiles }
 }
 
