@@ -1,5 +1,5 @@
 extern crate rrpg;
 
-fn main() {
-    rrpg::cli::cli::start();
-}
+use rrpg::cli::cli::start;
+
+fn main() { start(); }
