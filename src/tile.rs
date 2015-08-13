@@ -1,5 +1,7 @@
 use entity::{Entity};
 
+use rrpg_rustbox;
+
 pub struct Tile {
     entities: Vec<Entity>,
 }
