@@ -9,7 +9,8 @@ use map::Map;
 
 use cli::cli_constants::{SCREEN_WIDTH, SCREEN_HEIGHT};
 use cli::cli_storyline;
-use cli::map_drawer;
+
+use rrpg_rustbox::{Rustboxify};
 
 enum GameState { GameStart, GameExit }
 
@@ -43,6 +44,7 @@ fn start_game(r: &RustBox) {
     loop {
         clear_screen(&r);
         r.print(1, 1, rustbox::RB_BOLD, Color::White, Color::Black, t);
+        map.rustboxify(&r, 1, 1);
         make_borders(&r, Color::Blue);
         r.present();
         match r.poll_event(false) {

@@ -58,6 +58,11 @@ impl Entity {
         self.defense
     }
 
+    /// Get reference to read only name
+    pub fn get_name(&self) -> &String {
+        &self.name
+    }
+
     /// Safe way to decrement hitpoints
     pub fn receive_damage(&mut self, e: EntityStat) {
         if self.hitpoints > e {
@@ -87,7 +92,7 @@ impl fmt::Display for Entity {
         t.reset().unwrap();
 
         t.fg(term::color::GREEN).unwrap();
-        write!(f, " {}/{}", self.hitpoints, self.constitution);
+        write!(f, " {}/{}", self.hitpoints, self.constitution).unwrap();
         t.reset().unwrap();
 
         write!(f, "]")
