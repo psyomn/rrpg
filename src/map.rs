@@ -1,9 +1,11 @@
-use tile::{Tile};
+use tile::Tile;
+use viewport::{Viewport, ViewportBuilder};
 
 pub struct Map {
     tiles: Vec<Tile>,
     x: u32,
     y: u32,
+    viewport: Viewport,
 }
 
 impl Map {
@@ -12,6 +14,7 @@ impl Map {
             tiles: vec!(),
             x: 10,
             y: 10,
+            viewport: ViewportBuilder::new().default_x().default_y().finalize()
         };
         m.tiles = m.make_default_tiles();
         m
@@ -32,5 +35,6 @@ impl Map {
     pub fn y(&self) -> u32 { self.y }
 
     pub fn tiles(&self) -> &Vec<Tile> { &self.tiles }
+
 }
 
