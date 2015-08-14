@@ -32,3 +32,15 @@ fn test_new_map_contains_no_entities() {
 
     assert_eq!(count_entities, 0);
 }
+
+#[test]
+fn test_map_default_viewport_width_80() {
+    let def_map = map::Map::new();
+    assert_eq!(def_map.max_w(), 80);
+}
+
+#[test]
+fn test_map_default_viewport_height_40() {
+    let def_map = map::Map::new();
+    assert_eq!(def_map.max_h(), 40);
+}
