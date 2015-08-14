@@ -19,19 +19,21 @@ impl Rustboxify for Tile {
         };
 
         let (style, fg, bg, txt) = v;
-
         r.print(x, y, style, fg, bg, txt.as_ref());
     }
 }
 
 impl Rustboxify for Map {
+    /// This is the loop that treats the vector as a 2d vector, and invokes the draw on each tile
     fn rustboxify(&self, r: &RustBox, x: usize, y: usize) -> () {
-        let bld = rustbox::RB_BOLD;
-        let (red, black) = (Color::Red, Color::Black);
-        r.print(x, y, bld, red, black, "Map");
-        match self.tiles().iter().nth(2) {
-            Some(v) => v.rustboxify(&r, x+1, y+1),
-            None => {},
+        for h in 0..self.max_viewable_h() {
+            for w in 0..self.max_viewable_w() {
+                let curpos = (h * w) + w;
+                match self.tiles().iter().nth(curpos) {
+                    Some(t) => t.rustboxify(r, w, h),
+                    None => {},
+                }
+            }
         }
     }
 }

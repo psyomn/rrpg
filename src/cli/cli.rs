@@ -45,7 +45,7 @@ fn start_game(r: &RustBox) {
         clear_screen(&r);
         r.print(1, 1, rustbox::RB_BOLD, Color::White, Color::Black, t);
         map.rustboxify(&r, 1, 1);
-        make_borders(&r, Color::Blue);
+        //make_borders(&r, Color::Blue);
         r.present();
         match r.poll_event(false) {
             Ok(rustbox::Event::KeyEvent(key)) => {

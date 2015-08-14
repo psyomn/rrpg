@@ -34,13 +34,33 @@ fn test_new_map_contains_no_entities() {
 }
 
 #[test]
-fn test_map_default_viewport_width_80() {
+fn test_map_default_viewable_w() {
     let def_map = map::Map::new();
-    assert_eq!(def_map.max_w(), 80);
+    assert!(def_map.x() != 0);
+    assert_eq!(
+        def_map.max_viewport_w(),
+        cli::cli_constants::SCREEN_WIDTH);
 }
 
 #[test]
-fn test_map_default_viewport_height_40() {
+fn test_map_default_viewable_h() {
     let def_map = map::Map::new();
-    assert_eq!(def_map.max_h(), 40);
+    assert!(def_map.y() != 0);
+    assert_eq!(
+        def_map.max_viewport_h(),
+        cli::cli_constants::SCREEN_HEIGHT);
 }
+
+#[test]
+fn test_viewport_set_x_y_test() {
+    let set_x = 10;
+    let set_y = 10;
+    let c = viewport::ViewportBuilder::new()
+        .x(set_x)
+        .y(set_y)
+        .finalize();
+
+    assert_eq!(c.width(), set_x);
+    assert_eq!(c.height(), set_y);
+}
+
