@@ -64,3 +64,10 @@ fn test_viewport_set_x_y_test() {
     assert_eq!(c.height(), set_y);
 }
 
+#[test]
+fn test_map_shift_default() {
+    let m = map::Map::new();
+    assert_eq!(m.shift_x(), 0);
+    assert_eq!(m.shift_y(), 0);
+}
+

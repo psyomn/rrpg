@@ -14,6 +14,7 @@ pub struct Entity {
     mana:         EntityStat,
     hitpoints:    EntityStat,
     constitution: EntityStat,
+    is_player:    bool,
 }
 
 impl Entity {
@@ -27,6 +28,7 @@ impl Entity {
             mana:          5,
             hitpoints:    10,
             constitution: 10,
+            is_player:    false,
         }
     }
 

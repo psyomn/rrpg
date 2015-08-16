@@ -6,18 +6,22 @@ pub struct Map {
     tiles: Vec<Tile>,
     x: usize,
     y: usize,
+    shift_x: usize,
+    shift_y: usize,
     viewport: Viewport,
 }
 
 impl Map {
     pub fn new() -> Map {
-        let set_x: usize = 100;
-        let set_y: usize = 100;
+        let set_x: usize = 10;
+        let set_y: usize = 10;
 
         let mut m = Map {
             tiles: vec!(),
             x: set_x,
             y: set_y,
+            shift_x: 0,
+            shift_y: 0,
             viewport: ViewportBuilder::new()
                 .default_y()
                 .default_x()
@@ -68,6 +72,14 @@ impl Map {
         let vw64 = self.max_viewport_w() as u64;
         let ret = w64 % vw64;
         ret as usize
+    }
+
+    pub fn shift_x(&self) -> usize {
+        self.shift_x
+    }
+
+    pub fn shift_y(&self) -> usize {
+        self.shift_y
     }
 }
 
