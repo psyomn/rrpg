@@ -71,3 +71,16 @@ fn test_map_shift_default() {
     assert_eq!(m.shift_y(), 0);
 }
 
+
+#[test]
+fn test_entity_receive_damage() {
+    let mut e = entity::Entity::new("default".to_string());
+    let prev_hp = e.get_hitpoints();
+
+    e.receive_damage(1);
+    assert_eq!(e.get_hitpoints(), prev_hp - 1);
+
+    e.receive_damage(10000000);
+    assert_eq!(e.get_hitpoints(), 0);
+}
+
