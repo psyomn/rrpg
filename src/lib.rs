@@ -84,3 +84,16 @@ fn test_entity_receive_damage() {
     assert_eq!(e.get_hitpoints(), 0);
 }
 
+#[test]
+fn test_tile_add_entity() {
+    let mut t = tile::Tile::new();
+    let prev_count = t.entities().iter().count();
+
+    let e = entity::Entity::new("jonny".to_string());
+    t.add_entity(e);
+
+    let next_count = t.entities().iter().count();
+    assert_eq!(prev_count, 0);
+    assert_eq!(next_count, 1);
+}
+

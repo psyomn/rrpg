@@ -14,5 +14,9 @@ impl Tile {
     pub fn entities(&self) -> &Vec<Entity> {
         &self.entities
     }
+
+    pub fn add_entity(&mut self, e: Entity) -> () {
+        self.entities.push(e);
+    }
 }
 
