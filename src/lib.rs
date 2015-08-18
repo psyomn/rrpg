@@ -95,5 +95,15 @@ fn test_tile_add_entity() {
     let next_count = t.entities().iter().count();
     assert_eq!(prev_count, 0);
     assert_eq!(next_count, 1);
+
+    let ix = 100;
+
+    for _ in 0..ix {
+        let temp_e = entity::Entity::new("some ent".to_string());
+        t.add_entity(temp_e);
+    }
+
+    let bigger_count = t.entities().iter().count();
+    assert_eq!(bigger_count, ix + next_count);
 }
 
