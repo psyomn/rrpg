@@ -65,6 +65,13 @@ fn test_viewport_set_x_y_test() {
 }
 
 #[test]
+fn test_default_viewport() {
+    let c = viewport::ViewportBuilder::new().finalize();
+
+    assert_eq!((c.width(), c.height()), (0,0));
+}
+
+#[test]
 fn test_map_shift_default() {
     let m = map::Map::new();
     assert_eq!(m.shift_x(), 0);
